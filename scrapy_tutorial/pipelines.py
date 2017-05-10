@@ -8,4 +8,11 @@
 
 class ScrapyTutorialPipeline(object):
     def process_item(self, item, spider):
+        self.file.write("%s: %s\n" % (item["id"], item["text"]))
         return item
+
+    def open_spider(self, spider):
+        self.file = open("data.txt", "w")
+
+    def close_spider(self, spider):
+        self.file.close()

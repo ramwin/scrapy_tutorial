@@ -15,4 +15,6 @@ class ScrapyTutorialPipeline(object):
         self.file = open("data.txt", "w")
 
     def close_spider(self, spider):
+        import datetime
+        self.file.write("%s\n" % datetime.datetime.now().isoformat())
         self.file.close()

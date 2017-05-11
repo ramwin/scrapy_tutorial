@@ -6,6 +6,29 @@
 # http://doc.scrapy.org/en/latest/topics/spider-middleware.html
 
 from scrapy import signals
+import scrapy
+import logging
+
+
+class MyMiddleWare(object):
+
+    def process_spider_exception(self, response, exception, spider):
+        # 这个报错是尝试多次，一直失败。然后重新尝试的
+        logging.error("报错了哦")
+        logging.error("报错日志, process_spider_exception")
+        # import ipdb
+        # ipdb.set_trace()
+        if hasattr(spider, 'secret_key') == False:
+            spider.secret_key = 1
+        else:
+            spider.secret_key += 1
+        if spider.secret_key >= 4:
+            return [
+                {'id': None, "text": None}
+            ]
+        else:
+            yield scrapy.Request(response.url+"&secret=%d" % spider.secret_key, callback=spider.parse)
+
 
 
 class ScrapyTutorialSpiderMiddleware(object):

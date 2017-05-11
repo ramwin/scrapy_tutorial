@@ -49,6 +49,9 @@ ROBOTSTXT_OBEY = True
 #SPIDER_MIDDLEWARES = {
 #    'scrapy_tutorial.middlewares.ScrapyTutorialSpiderMiddleware': 543,
 #}
+SPIDER_MIDDLEWARES = {
+    'scrapy_tutorial.middlewares.MyMiddleWare': 543,
+}
 
 # Enable or disable downloader middlewares
 # See http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
@@ -88,3 +91,4 @@ ITEM_PIPELINES = {
 #HTTPCACHE_DIR = 'httpcache'
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
+LOG_LEVEL = "WARNING"

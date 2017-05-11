@@ -8,6 +8,7 @@
 from scrapy import signals
 import scrapy
 import logging
+import time
 
 
 class MyMiddleWare(object):
@@ -27,6 +28,7 @@ class MyMiddleWare(object):
                 {'id': None, "text": None}
             ]
         else:
+            time.sleep(spider.secret_key * 2)
             yield scrapy.Request(response.url+"&secret=%d" % spider.secret_key, callback=spider.parse)
 
 

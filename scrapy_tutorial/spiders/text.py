@@ -6,10 +6,11 @@ from .. import items
 class TextSpider(scrapy.Spider):
     name = "text"
     allowed_domains = ["www.ramwin.com"]
-    start_urls = ['http://www.ramwin.com/testrest/text/']
+    start_urls = ['http://www.ramwin.com/testrest/text/', 'http://www.ramwin.com/testrest/text/?secret=3']
 
     def parse(self, response):
         self.logger.info("A response from %s just arrived!", response.url)
+        self.logger.warning("A response from %s just arrived!", response.url)
         for li in response.xpath('//li'):
             # yield {
             #     "text": li.xpath('.//text()').extract_first(),

@@ -9,10 +9,12 @@
 class ScrapyTutorialPipeline(object):
     def process_item(self, item, spider):
         self.file.write("%s: %s\n" % (item["id"], item["text"]))
+        self.file.flush()
         return item
 
     def open_spider(self, spider):
         self.file = open("data.txt", "w")
+        open('log.log', 'w').close()
 
     def close_spider(self, spider):
         import datetime

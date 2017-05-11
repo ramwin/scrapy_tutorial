@@ -28,7 +28,7 @@ class MyMiddleWare(object):
                 {'id': None, "text": None}
             ]
         else:
-            time.sleep(spider.secret_key * 2)
+            time.sleep(spider.secret_key * 10)
             yield scrapy.Request(response.url+"&secret=%d" % spider.secret_key, callback=spider.parse)
 
 
